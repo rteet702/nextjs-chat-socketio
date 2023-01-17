@@ -20,5 +20,6 @@ export default function SocketHandler(
         );
     });
 
-    return response;
+    response.end();
+    return;
 }

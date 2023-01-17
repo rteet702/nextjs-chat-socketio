@@ -29,7 +29,7 @@ const MessageForm: FunctionComponent<IProps> = ({ socket }) => {
                     setContent(event.target.value);
                 }}
             ></textarea>
-            <button className="bg-gradient-to-r from-orange-500 to-yellow-500 shadow-lg hover:from-orange-400 hover:to-yellow-400 flex-1">
+            <button className="bg-gradient-to-tr from-orange-500 to-orange-400 shadow-lg hover:from-orange-400 hover:to-orange-300 flex-1">
                 Send
             </button>
         </form>

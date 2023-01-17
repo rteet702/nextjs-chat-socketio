@@ -52,7 +52,7 @@ const LoginForm: FunctionComponent<IProps> = ({ socket, setConnected }) => {
                     onChange={(e) => setRoom(e.target.value)}
                 />
             </div>
-            <button className="p-3 bg-gradient-to-r from-orange-500 to-yellow-500 shadow-lg hover:from-orange-400 hover:to-yellow-400">
+            <button className="p-3 bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg hover:from-orange-400 hover:to-orange-300">
                 Join the fun!
             </button>
         </form>

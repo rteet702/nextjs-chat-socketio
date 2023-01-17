@@ -1,8 +1,11 @@
+import { NextApiResponse } from "next";
 import { Server } from "socket.io";
-import { Socket } from "socket.io-client";
 
-export default function SocketHandler(request: any, response: any) {
-    if (response.socket?.server.io) {
+export default function SocketHandler(
+    request: Request,
+    response: NextApiResponse | any
+) {
+    if (response.socket.server.io) {
         console.log("Already set up...");
         response.end();
         return;

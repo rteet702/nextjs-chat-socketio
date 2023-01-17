@@ -15,7 +15,9 @@ export default function SocketHandler(
     response.socket.server.io = io;
 
     io.on("connection", (socket) => {
-        console.log("Connection established with socket: " + socket.id);
+        console.log(
+            "Connection established with socket: " + socket.handshake.auth.name
+        );
     });
 
     return response;

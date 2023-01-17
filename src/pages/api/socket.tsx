@@ -18,6 +18,20 @@ export default function SocketHandler(
         console.log(
             "Connection established with socket: " + socket.handshake.auth.name
         );
+
+        socket.join(socket.handshake.auth.room);
+        console.log("Connected socket to room: " + socket.handshake.auth.room);
+
+        socket.on("new_message", (message) => {
+            console.log(
+                `${socket.handshake.auth.name} said: ${message.content} to room: ${socket.handshake.auth.room}`
+            );
+
+            io.to(socket.handshake.auth.room).emit("add_message", {
+                content: message.content,
+                author: socket.handshake.auth.name,
+            });
+        });
     });
 
     response.end();

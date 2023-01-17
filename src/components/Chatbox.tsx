@@ -7,9 +7,18 @@ interface IProps {
     socket: Socket | undefined;
 }
 
+interface IMessage {
+    author: string;
+    content: string;
+}
+
 const Chatbox: FunctionComponent<IProps> = ({ socket }) => {
-    const [messages, setMessages] = useState();
+    const [messages, setMessages] = useState<Array<IMessage>>([]);
     const [connected, setConnected] = useState(false);
+
+    socket?.on("add_message", (message) => {
+        setMessages([...messages, message]);
+    });
 
     if (!socket) {
         return (
@@ -21,17 +30,22 @@ const Chatbox: FunctionComponent<IProps> = ({ socket }) => {
 
     return (
         <div className="bg-white w-2/3 shadow-lg h-[90vh] flex flex-col relative">
-            {/* {connected && (
-                <div className="absolute top-0 left-0 right-0 h-[15%] bg-neutral-200 flex items-center justify-center">
-                    <h1 className="text-4xl">
-                        Room: {room ? room : "Global"}!
-                    </h1>
-                </div>
-            )} */}
-            <div className="absolute top-[15%] left-0 right-0 h-[70%]"></div>
+            <div className="absolute top-[15%] left-0 right-0 h-[70%] p-5 flex flex-col gap-3">
+                {messages.map((message: IMessage, index) => {
+                    return (
+                        <div
+                            className="bg-neutral-200 shadow-lg p-3"
+                            key={index}
+                        >
+                            <p>{message.author} said:</p>
+                            <p className="ml-5">{message.content}</p>
+                        </div>
+                    );
+                })}
+            </div>
             <div className="absolute bottom-0 left-0 right-0 h-[15%] bg-neutral-200 shadow-lg p-3">
                 {connected ? (
-                    <MessageForm />
+                    <MessageForm socket={socket} />
                 ) : (
                     <LoginForm socket={socket} setConnected={setConnected} />
                 )}

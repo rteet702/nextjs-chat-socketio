@@ -24,7 +24,7 @@ const LoginForm: FunctionComponent<IProps> = ({ socket, setConnected }) => {
             return;
         }
 
-        socket.auth = { name: username };
+        socket.auth = { name: username, room: room ? room : "all_users" };
         setError("");
         setConnected(true);
         socket.connect();

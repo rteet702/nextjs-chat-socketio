@@ -31,7 +31,7 @@ const Chatbox: FunctionComponent<IProps> = ({ socket }) => {
     return (
         <div className="bg-white w-2/3 shadow-lg h-[90vh] flex flex-col relative">
             {socket.auth && socket.auth.room && (
-                <div className="absolute top-0 left-0 right-0 h-[15%] bg-orange-400 flex items-center justify-center">
+                <div className="absolute top-0 left-0 right-0 h-[15%] bg-gradient-to-r from-orange-500 to-yellow-500 shadow-lg flex items-center justify-center">
                     <h2 className="text-4xl">
                         You are connected to:{" "}
                         <span className="font-bold">{socket.auth.room}</span>

@@ -37,7 +37,7 @@ const Chatbox: FunctionComponent<IProps> = ({ socket }) => {
                             className="bg-neutral-200 shadow-lg p-3"
                             key={index}
                         >
-                            <p>{message.author} said:</p>
+                            <p>{message.author} said: </p>
                             <p className="ml-5">{message.content}</p>
                         </div>
                     );

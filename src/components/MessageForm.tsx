@@ -31,7 +31,7 @@ const MessageForm: FunctionComponent<IProps> = ({ socket }) => {
                     setContent(event.target.value);
                 }}
                 onKeyDown={(e) => {
-                    if (e.keyCode === 13 && e.shiftKey == false) {
+                    if (e.key === "Enter" && e.shiftKey == false) {
                         e.preventDefault();
                         submitMessage();
                     }

@@ -8,8 +8,10 @@ interface IProps {
 const MessageForm: FunctionComponent<IProps> = ({ socket }) => {
     const [content, setContent] = useState("");
 
-    const submitMessage = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const submitMessage = (event: FormEvent<HTMLFormElement> | null = null) => {
+        if (event) {
+            event.preventDefault();
+        }
 
         if (!socket) {
             return;
@@ -27,6 +29,12 @@ const MessageForm: FunctionComponent<IProps> = ({ socket }) => {
                 value={content}
                 onChange={(event) => {
                     setContent(event.target.value);
+                }}
+                onKeyDown={(e) => {
+                    if (e.keyCode === 13 && e.shiftKey == false) {
+                        e.preventDefault();
+                        submitMessage();
+                    }
                 }}
             ></textarea>
             <button className="bg-gradient-to-tr from-orange-500 to-orange-400 shadow-lg hover:from-orange-400 hover:to-orange-300 flex-1">
